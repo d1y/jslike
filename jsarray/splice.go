@@ -1,4 +1,4 @@
-package array
+package jsarray
 
 // splice modifies the source slice by deleting delete amount of items starting with index and replacing them with
 // optional item(s). It returns all the elements that have been removed, nil for zero removed items.
