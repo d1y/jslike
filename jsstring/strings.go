@@ -3,6 +3,7 @@ package jsstring
 import (
 	"math"
 	"strings"
+	"unicode"
 )
 
 type JSString string
@@ -22,6 +23,19 @@ func (s JSString) Equal(other string) bool {
 
 func (s JSString) NotEqual(other string) bool {
 	return !s.Equal(other)
+}
+
+// https://github.com/bytedance/gopkg/blob/3db87571198b1ff8824d3ed695e3167e4cb3d699/lang/stringx/is.go#L48C1-L58C2
+func (s JSString) IsNumeric() bool {
+	if s == "" {
+		return false
+	}
+	for _, v := range s {
+		if !unicode.IsDigit(v) {
+			return false
+		}
+	}
+	return true
 }
 
 func (s JSString) ToNative() string {
